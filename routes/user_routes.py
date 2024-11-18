@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
 from entities.user_crud import create_user, get_all_users, update_user, delete_user, get_user_by_email_and_password, get_user_by_id
-from entities.admin_crud import get_admin_by_email_and_password
 
 # Criando um Blueprint para as rotas de usuário
 user_bp = Blueprint('user', __name__)
@@ -30,29 +29,23 @@ def create_new_user():
 # Rota para o login
 @user_bp.route('/login', methods=['POST'])
 def login_user():
-    if not request.is_json:
-        return jsonify({"error": "Formato de mídia não suportado. Envie os dados em JSON."}), 415
-
-    data = request.get_json()
+    data = request.get_json()  # Obtém os dados em JSON
+    
     email = data.get('email')
     password = data.get('password')
 
     if not email or not password:
         return jsonify({"error": "Email e senha são obrigatórios"}), 400
+    
+    user = get_user_by_email_and_password(email, password)  # Função que busca usuário pelo email e senha
 
-    user = get_user_by_email_and_password(email, password)
     if user:
-        # Armazena dados na sessão
+        # Armazenando o user_id na sessão
         session['user_id'] = user['id']
-        session['role'] = 'admin' if user.get('is_admin') else 'user'
-
-        # Verifica qual dashboard redirecionar
-        if user.get('is_admin'):
-            return jsonify({"message": f"Login bem-sucedido, Olá, {user['username']}!", "redirect": "/admin_dashboard"}), 200
-        else:
-            return jsonify({"message": f"Login bem-sucedido, Olá, {user['name']}!", "redirect": "/user_dashboard"}), 200
+        return jsonify({"message": f"Login bem-sucedido, Olá, {user['name']}!"}), 200
     else:
         return jsonify({"error": "Email ou senha incorretos"}), 401
+
 
 
 #Rota para Logout
@@ -87,31 +80,16 @@ def delete_existing_user(id):
 @user_bp.route('/dashboard')
 def dashboard():
     user_id = session.get('user_id')
-    user_role = session.get('role')
-
-    if not user_id or not user_role:
-        return redirect(url_for('app.login'))  # Redireciona para o login se não estiver logadoaaaaaaaaaaaaaaaaa
-
-    if user_role == 'admin':
-        return redirect(url_for('user.admin_dashboard'))
-    elif user_role == 'user':
-        return redirect(url_for('user.dashboard'))
+    
+    if not user_id:
+        return redirect(url_for('app.login'))  # Redireciona para o login se não estiver logado
+    
+    user = get_user_by_id(user_id)
+    
+    if user:
+        return render_template('dashboard.html', user=user)  # Passa o usuário para a template
     else:
-        return redirect(url_for('app.login'))  # Em caso de erro, retorna ao login
+        return redirect(url_for('app.login'))  # Redireciona para o login caso o usuário não seja encontrado
 
 
-@user_bp.route('/admin_dashboard')
-def admin_dashboard():
-    # Verifica se o usuário está autenticado e se é um admin
-    if 'user_id' not in session or session.get('role') != 'admin':
-        return redirect(url_for('app.login'))  # Redireciona para login se não for admin
-    return render_template('admin_dashboard.html')  # Renderiza a página do admin
-
-# Rota para o user_dashboard
-@user_bp.route('/user_dashboard')
-def user_dashboard():
-    # Verifica se o usuário está autenticado e se é um usuário normal
-    if 'user_id' not in session or session.get('role') != 'user':
-        return redirect(url_for('user.login'))  # Redireciona para login se não for usuário
-    return render_template('dashboard.html') 
 

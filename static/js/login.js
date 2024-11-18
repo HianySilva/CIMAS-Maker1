@@ -1,9 +1,14 @@
 document.querySelector("#loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault(); // Impede o envio do formulário
-
+    e.preventDefault(); // Impede o envio padrão do formulário
+    
     const form = e.target;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    
+    // Convertendo FormData para um objeto JSON
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
 
     try {
         const response = await fetch(form.action, {
@@ -13,30 +18,24 @@ document.querySelector("#loginForm").addEventListener("submit", async (e) => {
             },
             body: JSON.stringify(data),  // Converte os dados para JSON
         });
-
+    
         const result = await response.json();
         const messageElement = document.getElementById("message");
 
         if (response.ok) {
             // Exibe a mensagem de sucesso
             messageElement.textContent = result.message;
-            messageElement.style.color = "green";  // Define a cor como verde para o sucesso
+            messageElement.style.color = "green";
 
-            // Redireciona para o dashboard adequado
-            if (result.redirect === '/admin_dashboard') {
-                window.location.href = '/admin_dashboard';
-            } else if (result.redirect === '/user_dashboard') {
-                window.location.href = '/user_dashboard';
-            }
+            // Redireciona para o dashboard após login bem-sucedido
+            window.location.href = "/dashboard"; // Caminho da rota do dashboard
+
         } else {
-            // Exibe a mensagem de erro
+            // Exibe o erro, se houver
             messageElement.textContent = result.error || "Erro ao fazer login.";
-            messageElement.style.color = "red";  // Define a cor como vermelha para o erro
+            messageElement.style.color = "red";
         }
     } catch (error) {
         console.error("Erro ao enviar formulário:", error);
-        const messageElement = document.getElementById("message");
-        messageElement.textContent = "Erro inesperado. Tente novamente.";
-        messageElement.style.color = "red";  // Em caso de erro inesperado, exibe a mensagem em vermelho
     }
 });
