@@ -1,0 +1,152 @@
+<! DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título da página</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
+</head>
+<body>
+<section class="header">
+    <nav>
+        <a href="index.html"><img src="{{ url_for('static', filename='images/logoo.png') }}"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="{{ url_for('app.home') }}">Home</a></li>
+                <li><a href="{{ url_for('app.login') }}">Login</a></li>
+                <li><a href="{{ url_for('app.register') }}">Registro</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu" ></i>
+    </nav>
+
+<div class="text-box">
+    <h1>Cimas Maker</h1>
+    <p>asdasda</p>
+    <a href="" class="hero-btn">TChubiraldalda</a>
+</div>
+
+</section>
+
+<!--Segunda parte do site-->
+<section class="course">
+    <h1>ASAWOGMNAISNFIANS</h1>
+    <p>KNAKJNUCNUANSUIGNAUISBNASUINFIAUSNFUIANSFUIANSGUAS</p>
+
+    <div class="row">
+        <div class="course-col">
+            <h3>Eminio</h3>
+            <p>amwnifnaoinoifnasiondioasnoifnasoindfioasnfionasoifnasio
+                asmniofmasiomfoasmfamsf
+                dajsfoiasmoigmasomgfasog
+            dasdasdasdasdasdasdasdsdasdasdasd</p>
+        </div>
+        <div class="course-col">
+            <h3>Ladygago</h3>
+            <p>amwnifnaoinoifnasiondioasnoifnasoindfioasnfionasoifnasio
+                asmniofmasiomfoasmfamsf
+                dajsfoiasmoigmasomgfasog
+            asdasdasdasdasdasdasdasdasdasdasda</p>
+        </div>
+        <div class="course-col">
+            <h3>Palwaker</h3>
+            <p>amwnifnaoinoifnasiondioasnoifnasoindfioasnfionasoifnasio
+                asmniofmasiomfoasmfamsf
+                dajsfoiasmoigmasomgfasog
+            gamsinbgiasnuidnfuiasdnsidngusdnfs</p>
+        </div>
+    </div>
+</section>
+
+
+<!--Parte para mostras localidades no Campus-->
+
+<section class="campus">
+    <h1>Abroba</h1>
+    <p>Pilao</p>
+
+    <div class="row">
+        <div class="campus-col">
+            <img src="{{ url_for('static', filename='images/london.png') }}">
+            <div class="layer">
+                <h3>RECIFE</h3>
+            </div>
+        </div>
+        <div class="campus-col">
+            <img src="{{ url_for('static', filename='images/newyork.png') }}">
+            <div class="layer">
+                <h3>RECIFE</h3>
+            </div>
+        </div>
+        <div class="campus-col">
+            <img src="{{ url_for('static', filename='images/washington.png') }}">
+            <div class="layer">
+                <h3>RECIFE</h3>
+            </div>
+        </div>
+        
+
+    </div>
+
+
+</section>
+
+<!--Footer-->
+
+<section><footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Sobre Nós</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Links Úteis</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Serviços</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <p>Email: exemplo@email.com</p>
+        <p>Telefone: (11) 1234-5678</p>
+        <div class="social-icons">
+          <a href="#"><img src="icon-facebook.png" alt="Facebook"></a>
+          <a href="#"><img src="icon-twitter.png" alt="Twitter"></a>
+          <a href="#"><img src="icon-instagram.png" alt="Instagram"></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Nome da Empresa. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  </section>
+
+
+
+<!--Parte em JavaScript-->
+
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu(){
+        navLinks.style.right = "0";
+        }
+    function hideMenu(){
+        navLinks.style.right = "-200px"
+    }
+    
+</script>
+
+</body>
+</html>    

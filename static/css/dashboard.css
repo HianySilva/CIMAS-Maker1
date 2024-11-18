@@ -1,0 +1,30 @@
+.dashboard-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #2e8b57;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <title>Register</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form action="{{ url_for('user.create_new_user') }}" method="POST">
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="date" name="dateofbirth" placeholder="Data de Nascimento" required>
+            <input type="text" name="institutionName" placeholder="Nome da Instituição" required>
+            <input type="email" name="email" placeholder="Email Institucional" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Register</button>
+        </form>
+        <div id="message"></div>
+        <p>Você já tem conta? <a href="{{ url_for('app.login') }}">Login</a></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+
+</body>
+
+</html>
+
