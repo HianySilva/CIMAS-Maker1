@@ -1,0 +1,181 @@
+/* Reset básico */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* Cabeçalho */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: radial-gradient(circle, #040231, #519DED);
+    color: white;
+    padding: 0 20px;
+    height: 60px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .logo img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .nav-menu a:hover {
+    text-decoration: underline;
+  }
+  
+  .actions .logout-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .actions .logout-icon:hover {
+    color: #cce4ff;
+  }
+  
+  /* Menu lateral */
+  .sidebar {
+    width: 250px;
+    background-color: #F7F7F7;
+    height: calc(100vh - 60px);
+    padding: 20px 10px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .user-info .avatar {
+    font-size: 50px;
+    color: #040231;
+  }
+  
+  .user-info .username {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    margin-bottom: 15px;
+  }
+  
+  .menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  .menu a .fas {
+    font-size: 16px;
+  }
+  
+  .menu a.active,
+  .menu a:hover {
+    background-color: #E6F7FF;
+    color: #040231;
+  }
+  
+  /* Conteúdo principal */
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .management-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .add-btn {
+    background-color: #0079C1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .add-btn:hover {
+    background-color: #005D99;
+  }
+  
+  .management-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .management-table th,
+  .management-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .management-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    background-color: #0079C1;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .delete-btn {
+    background-color: #FF4B4B;
+  }
+  
+  .edit-btn:hover {
+    background-color: #005D99;
+  }
+  
+  .delete-btn:hover {
+    background-color: #CC0000;
+  }
+  
