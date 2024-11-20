@@ -58,3 +58,17 @@ def delete_admin(id):
     conn.commit()
     conn.close()
     return {"message": "Administrador deletado com sucesso!"}
+
+
+def get_admin_by_email_and_password(email, password):
+    conn = connect_db()
+    cursor = conn.cursor()
+    
+    cursor.execute('''SELECT id, username, email FROM admin WHERE email = ? AND password = ?''', (email, password))
+    admin = cursor.fetchone()  # Retorna o primeiro administrador encontrado
+    
+    conn.close()
+    
+    if admin:
+        return {"id": admin[0], "username": admin[1], "email": admin[2]}  # Retorna o admin se encontrado
+    return None  # Retorna None se não encontrar

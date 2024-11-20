@@ -1,0 +1,227 @@
+/* Reset básico */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: radial-gradient(circle, #040231, #519DED);
+  color: white;
+  padding: 0 20px;
+  height: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.logo img {
+  height: 150px;
+  margin-right: 100px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.actions .fas {
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.actions .fas:hover {
+  color: #cce4ff;
+}
+
+/* Menu lateral */
+.sidebar {
+  width: 250px;
+  background-color: #F7F7F7;
+  height: calc(100vh - 60px);
+  padding: 20px 10px;
+  border-right: 1px solid #ddd;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.user-info .avatar {
+  font-size: 50px;
+  color: #040231;
+}
+
+.user-info .username {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin-bottom: 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.menu a .fas {
+  font-size: 16px;
+}
+
+.menu a.active,
+.menu a:hover {
+  background-color: #E6F7FF;
+  color: #040231;
+}
+
+/* Conteúdo principal */
+.main-container {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.enter-class {
+  background-color: #0079C1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.enter-class:hover {
+  background-color: #005D99;
+}
+
+.info-box {
+  background-color: #F0F0F0;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: #0079C1;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Seção de Exemplos de Projetos */
+.projects-section {
+  margin-top: 30px;
+}
+
+.projects {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-card {
+  width: 30%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.project-card h3 {
+  margin-top: 15px;
+  font-size: 1.2em;
+}
+
+.project-card p {
+  margin-top: 10px;
+  color: #555;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .header {
+    justify-content: space-between;
+  }
+
+  /* Ajuste para os cards de projeto em telas menores */
+  .projects {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}

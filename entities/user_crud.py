@@ -50,6 +50,7 @@ def get_user_by_email_and_password(email, password):
         return {"id": user[0], "name": user[1], "email": user[2]}  # Retorna o usuário se encontrado
     return None  # Retorna None caso não encontre
 
+
 #Função para achar um usuario pelo id(Login e seção)
 def get_user_by_id(user_id):
     conn = connect_db()

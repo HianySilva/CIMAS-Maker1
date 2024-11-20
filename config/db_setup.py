@@ -39,6 +39,32 @@ def init_db():
         )
     ''')
 
+     # Tabela de institution (Instituições)
+    cursor.execute(''' 
+        CREATE TABLE IF NOT EXISTS institution (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,            
+            cnpj TEXT NOT NULL,            
+            phone TEXT,                     
+            email TEXT,                     
+            address_id INTEGER,               -- Chave estrangeira para a tabela de endereços
+            FOREIGN KEY (address_id) REFERENCES address(id)
+        )
+    ''')
+
+    # Tabela de address (Endereços das instituições)
+    cursor.execute(''' 
+        CREATE TABLE IF NOT EXISTS address (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            street TEXT NOT NULL,            -- Rua
+            number TEXT NOT NULL,            -- Número
+            city TEXT NOT NULL,              -- Cidade
+            state TEXT NOT NULL,             -- Estado
+            postal_code TEXT NOT NULL        -- CEP
+        )
+    ''')
+
+
     # Commit para garantir que as tabelas sejam criadas
     conn.commit()
     conn.close()
