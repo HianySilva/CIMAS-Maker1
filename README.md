@@ -15,6 +15,12 @@ O movimento Maker tem ganhado força ao redor do mundo, promovendo a colaboraç�
 - **Crud de Adminstrador**: Gerenciamento de recursos que podem ser alocados em salas e laboratórios.
 
 
+## Página Inicial
+
+![Página Inicial](./docs/home.png)
+
+A página inicial exibe uma lista de salas e laboratórios com seus respectivos status.
+
 ## Tela de Login
 
 ![Tela de Login](./docs/login.png)
@@ -27,11 +33,6 @@ A página de login permite que os usuários se autentiquem no sistema.
 
 A página de cadastro permite adicionar novos usuários ao sistema.
 
-## Página Inicial
-
-![Página Inicial](./docs/home.png)
-
-A página inicial exibe uma lista de salas e laboratórios com seus respectivos status.
 
 ## Dashboard_Usuarios
 
