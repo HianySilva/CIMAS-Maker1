@@ -39,7 +39,7 @@ A página de cadastro permite adicionar novos usuários ao sistema.
 ![Dashboard_Usuarios](./docs/Dashboard_Usuarios.png)
 Aqui você pode adicionar novas salas e laboratórios ao sistema.
 
-
+## Dashboard_Administrador
 ![Dashboard_Administrador](./docs/Dashboard_Admin.png)
 
 Aqui você pode adicionar novas salas e laboratórios ao sistema.
