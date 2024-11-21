@@ -1,10 +1,10 @@
 /* Reset básico */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 /* Cabeçalho */
@@ -16,18 +16,23 @@ body {
   color: white;
   padding: 0 20px;
   height: 60px;
+  width: 100%;
+  position: fixed; /* Fixa o cabeçalho no topo */
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  font-size: 50px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .logo img {
-  height: 150px;
-  margin-right: 100px;
+  height: 120px;
+  margin-right: 10px;
 }
 
 .nav-menu {
@@ -46,59 +51,61 @@ body {
   text-decoration: underline;
 }
 
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.actions .fas {
+.actions .logout-icon {
   font-size: 20px;
   cursor: pointer;
   color: white;
 }
 
-.actions .fas:hover {
+.actions .logout-icon:hover {
   color: #cce4ff;
 }
 
-/* Menu lateral */
+/* Estrutura geral */
+.main-container {
+  display: flex;
+  width: 100%;
+  margin-top: 60px; /* Adiciona espaço para o cabeçalho */
+  height: calc(100vh - 60px); /* Garante que o restante preencha a tela */
+  overflow: hidden; /* Remove scroll desnecessário */
+}
+
 .sidebar {
   width: 250px;
   background-color: #F7F7F7;
-  height: calc(100vh - 60px);
+  height: 100%;
   padding: 20px 10px;
   border-right: 1px solid #ddd;
 }
 
-.user-info {
+.sidebar .user-info {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.user-info .avatar {
+.sidebar .user-info .avatar {
   font-size: 50px;
   color: #040231;
 }
 
-.user-info .username {
+.sidebar .user-info .username {
   font-size: 16px;
   font-weight: bold;
 }
 
-.menu {
+.sidebar .menu {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.menu li {
+.sidebar .menu li {
   margin-bottom: 15px;
 }
 
-.menu a {
+.sidebar .menu a {
   text-decoration: none;
   color: #333;
   font-size: 14px;
@@ -107,121 +114,162 @@ body {
   gap: 10px;
   padding: 10px 15px;
   border-radius: 5px;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease;
 }
 
-.menu a .fas {
-  font-size: 16px;
-}
-
-.menu a.active,
-.menu a:hover {
+.sidebar .menu a.active,
+.sidebar .menu a:hover {
   background-color: #E6F7FF;
   color: #040231;
 }
 
-/* Conteúdo principal */
-.main-container {
-  display: flex;
-  flex: 1;
-}
-
-.content {
-  flex: 1;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.enter-class {
-  background-color: #0079C1;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+.sidebar .menu a .fas {
   font-size: 16px;
-  margin-bottom: 20px;
 }
 
-.enter-class:hover {
-  background-color: #005D99;
-}
-
-.info-box {
-  background-color: #F0F0F0;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.link {
-  color: #0079C1;
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: underline;
-}
-
-/* Seção de Exemplos de Projetos */
-.projects-section {
-  margin-top: 30px;
-}
-
-.projects {
+/* Conteúdo principal */
+.content {
+  flex: 1; /* Faz o conteúdo ocupar o espaço restante */
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f4f4f4;
 }
 
-.project-card {
-  width: 30%;
-  border: 1px solid #ccc;
+.management-section {
+  background-color: white;
   border-radius: 10px;
-  padding: 15px;
-  background-color: #f9f9f9;
+  padding: 30px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: fit-content;
+}
+
+.management-section h1 {
+  font-size: 28px;
+  color: #040231;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.project-card img {
+.add-btn-container {
+  display: flex;
+  justify-content: flex-start; /* Botão alinhado à esquerda */
+}
+
+.add-btn {
+  background-color: #0079C1;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #005D99;
+}
+
+.management-table {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  border-collapse: collapse;
 }
 
-.project-card h3 {
-  margin-top: 15px;
-  font-size: 1.2em;
+.management-table th,
+.management-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
 }
 
-.project-card p {
-  margin-top: 10px;
-  color: #555;
+.management-table th {
+  background-color: #519DED;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-/* Responsividade */
+.management-table td {
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.management-table tr:nth-child(even) td {
+  background-color: #f1f1f1;
+}
+
+.management-table tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Ajustes responsivos */
 @media (max-width: 768px) {
+  .main-container {
+    flex-direction: column; /* Empilha a sidebar */
+  }
+
   .sidebar {
-    display: none;
+    width: 100%;
+    height: auto;
+    padding: 10px;
   }
 
-  .header {
-    justify-content: space-between;
+  .content {
+    padding: 10px;
   }
 
-  /* Ajuste para os cards de projeto em telas menores */
-  .projects {
-    flex-direction: column;
-    align-items: center;
+  .management-section {
+    padding: 10px;
   }
+}
+/* Botões de ação */
+.edit-btn,
+.delete-btn,
+.update-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
 
-  .project-card {
-    width: 80%;
-    margin-bottom: 20px;
-  }
+.edit-btn {
+  background-color: #0079C1;
+}
+
+.delete-btn {
+  background-color: #FF4B4B;
+}
+
+.update-btn {
+  background-color: #28A745;
+}
+
+.edit-btn:hover {
+  background-color: #005D99;
+}
+
+.delete-btn:hover {
+  background-color: #CC0000;
+}
+
+.update-btn:hover {
+  background-color: #218838;
+}
+
+.edit-btn i,
+.delete-btn i,
+.update-btn i {
+  font-size: 8px;
 }

@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABA - CIMAS MAKER</title>
-
-   
-    <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <title> ABA - Administrador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-dashboard.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -17,16 +15,13 @@
             <img src="{{ url_for('static', filename='images/logoo.png') }}" alt="Logo">
         </div>
         <nav class="nav-menu">
-            <a href="#">Galeria</a>
+            <a href="#">Usuários</a>
             <a href="#">Projetos</a>
-            <a href="#">Turmas</a>
-            <a href="#">Recursos</a>
+            <a href="#">Configurações</a>
         </nav>
         <div class="actions">
-            <!-- Ícone de busca -->
-            <i class="fas fa-search search-icon" title="Buscar"></i>
-            <!-- Ícone de usuário -->
-            <i class="fas fa-user user-avatar" title="Perfil"></i>
+            <!-- Ícone de logout -->
+            <i class="fas fa-sign-out-alt logout-icon" title="Sair"></i>
         </div>
     </header>
 
@@ -35,49 +30,87 @@
         <!-- Menu lateral -->
         <aside class="sidebar">
             <div class="user-info">
-                <!-- Avatar com ícone -->
                 <i class="fas fa-user-circle avatar" title="Avatar"></i>
-                <span class="username">{{ user.name }}</span> <!-- Exibe o nome do usuário dinamicamente -->
+                <span class="username">{{ user.name }}</span> <!-- Exibe o nome do administrador -->
             </div>
             <ul class="menu">
                 <li><a href="#" class="active"><i class="fas fa-home icon"></i> Início</a></li>
-                <li><a href="#"><i class="fas fa-chalkboard icon"></i> Turmas</a></li>
-                <li><a href="#"><i class="fas fa-folder icon"></i> Projetos</a></li>
-                <li><a href="#"><i class="fas fa-th-large icon"></i> Coleções</a></li>
-                <li><a href="#"><i class="fas fa-play-circle icon"></i> Tutoriais</a></li>
-                <li><a href="#"><i class="fas fa-trophy icon"></i> Desafios</a></li>
+                <li><a href="#"><i class="fas fa-users icon"></i> Gerenciar Administradores</a></li>
+                <li><a href="#"><i class="fas fa-folder icon"></i> Gerenciar Projetos</a></li>
+                <li><a href="#"><i class="fas fa-cog icon"></i> Configurações</a></li>
             </ul>
         </aside>
 
         <!-- Conteúdo principal -->
-        <main class="content">
-            <h1>Projetos</h1>
-            <button class="enter-class">Criar</button>
-            
+        <div class="content">
+            <div class="management-section">
+                <h1>ADMINISTRADORES</h1>
 
-            <!-- Seção de Exemplos de Projetos -->
-            <div class="projects-section">
-                <h2>Exemplos de Projetos</h2>
-                <div class="projects">
-                    <!-- Exemplo de Card de Projeto -->
-                    <div class="project-card">
-                        <img src="projeto1.png" alt="Projeto 1">
-                        <h3>Projeto Criativo 1</h3>
-                        <p>Descrição breve do projeto que mostra suas características principais e objetivos.</p>
-                    </div>
-                    <div class="project-card">
-                        <img src="project2.jpg" alt="Projeto 2">
-                        <h3>Projeto Criativo 2</h3>
-                        <p>Descrição breve do projeto que mostra suas características principais e objetivos.</p>
-                    </div>
-                    <div class="project-card">
-                        <img src="project3.jpg" alt="Projeto 3">
-                        <h3>Projeto Criativo 3</h3>
-                        <p>Descrição breve do projeto que mostra suas características principais e objetivos.</p>
-                    </div>
+                <!-- Botão de adicionar à esquerda -->
+                <div class="add-btn-container">
+                    <button class="add-btn">Adicionar Administrador</button>
                 </div>
+
+                <!-- Tabela de administradores -->
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Usuário</th>
+                            <th>Ativo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>Demonstracao Maxnivel</td>
+                            <td>demonstracao</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Juliano</td>
+                            <td>juliano</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Katia Costa</td>
+                            <td>katia</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Cliente Objeto</td>
+                            <td>cliente</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </main>
+        </div>
     </div>
 </body>
 </html>
