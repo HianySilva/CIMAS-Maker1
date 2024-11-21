@@ -7,7 +7,7 @@ O projeto **Gerenciamento de Salas e Laboratórios** é uma aplicação web dese
 - **Login e Cadastro**: Acesso seguro à aplicação com diferentes tipos de usuários.
 - **Home**: Visualização de salas e laboratórios.
 - **Dashboard de Usuario**: Inclusão de novas salas e laboratórios no sistema.
-- **Crud de Adminstrador **: Gerenciamento de recursos que podem ser alocados em salas e laboratórios.
+- **Crud de Adminstrador**: Gerenciamento de recursos que podem ser alocados em salas e laboratórios.
 
 
 ## Tela de Login
