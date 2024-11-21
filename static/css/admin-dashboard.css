@@ -31,7 +31,8 @@ body {
 }
 
 .logo img {
-  height: 120px;
+  width: 140px; /* Tamanho fixo para o logo */
+  height: auto;
   margin-right: 10px;
 }
 
@@ -51,14 +52,35 @@ body {
   text-decoration: underline;
 }
 
-.actions .logout-icon {
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
+.
+/* Alinhamento do botão de logout */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 60px; /* Ajustei o gap */
+  margin-left: 100px; /* Ajuste para centralizar o botão de logout */
 }
 
-.actions .logout-icon:hover {
+.btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.1s ease;
+  padding: 30px;
+}
+
+.btn-logout:hover {
   color: #cce4ff;
+}
+
+.logout-icon {
+  font-size: 16px;
+  margin-right: 5px;
 }
 
 /* Estrutura geral */
@@ -114,13 +136,17 @@ body {
   gap: 10px;
   padding: 10px 15px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transições */
 }
 
 .sidebar .menu a.active,
 .sidebar .menu a:hover {
   background-color: #E6F7FF;
   color: #040231;
+}
+
+.sidebar .menu a:focus {
+  outline: 2px solid #519DED; /* Indica foco visível */
 }
 
 .sidebar .menu a .fas {
@@ -167,11 +193,15 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
 }
 
 .add-btn:hover {
   background-color: #005D99;
+}
+
+.add-btn:active {
+  transform: scale(0.95); /* Efeito de clique */
 }
 
 .management-table {
@@ -209,39 +239,36 @@ body {
   background-color: #e0e0e0;
 }
 
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column; /* Empilha a sidebar */
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-  }
-
-  .content {
-    padding: 10px;
-  }
-
-  .management-section {
-    padding: 10px;
-  }
+.management-table .status-icon {
+  font-size: 16px;
 }
+
+.management-table .status-icon.active {
+  color: green;
+}
+
+.management-table .status-icon.inactive {
+  color: red;
+}
+
+.table-responsive {
+  overflow-x: auto; /* Rolagem horizontal */
+}
+
 /* Botões de ação */
 .edit-btn,
 .delete-btn,
 .update-btn {
-  display: flex;
+  display: inline-flex; /* Ajusta alinhamento com ícones */
   align-items: center;
   gap: 5px;
   border: none;
-  padding: 3px 10px;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
   color: white;
+  transition: transform 0.3s ease; /* Transições suaves */
 }
 
 .edit-btn {
@@ -268,8 +295,29 @@ body {
   background-color: #218838;
 }
 
-.edit-btn i,
-.delete-btn i,
-.update-btn i {
-  font-size: 8px;
+.edit-btn:active,
+.delete-btn:active,
+.update-btn:active {
+  transform: scale(0.95); /* Efeito de clique */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column; /* Empilha a sidebar */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .management-section {
+    padding: 10px;
+  }
 }

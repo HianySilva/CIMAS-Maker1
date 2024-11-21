@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> ABA - Administrador</title>
+    <title>ABA - Administrador</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-dashboard.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
@@ -20,8 +20,10 @@
             <a href="#">Configurações</a>
         </nav>
         <div class="actions">
-            <!-- Ícone de logout -->
-            <i class="fas fa-sign-out-alt logout-icon" title="Sair"></i>
+            <!-- Botão de logout -->
+            <button class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
         </div>
     </header>
 
@@ -38,6 +40,7 @@
                 <li><a href="#"><i class="fas fa-users icon"></i> Gerenciar Administradores</a></li>
                 <li><a href="#"><i class="fas fa-folder icon"></i> Gerenciar Projetos</a></li>
                 <li><a href="#"><i class="fas fa-cog icon"></i> Configurações</a></li>
+              
             </ul>
         </aside>
 
@@ -69,9 +72,11 @@
                             <td>demonstracao</td>
                             <td>Sim</td>
                             <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
+                                <div class="actions-container">
+                                    <button class="btn-action edit-btn">Editar</button>
+                                    <button class="btn-action update-btn">Atualizar</button>
+                                    <button class="btn-action delete-btn">Remover</button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -80,9 +85,11 @@
                             <td>juliano</td>
                             <td>Sim</td>
                             <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
+                                <div class="actions-container">
+                                    <button class="btn-action edit-btn">Editar</button>
+                                    <button class="btn-action update-btn">Atualizar</button>
+                                    <button class="btn-action delete-btn">Remover</button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -91,9 +98,11 @@
                             <td>katia</td>
                             <td>Sim</td>
                             <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
+                                <div class="actions-container">
+                                    <button class="btn-action edit-btn">Editar</button>
+                                    <button class="btn-action update-btn">Atualizar</button>
+                                    <button class="btn-action delete-btn">Remover</button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -102,9 +111,11 @@
                             <td>cliente</td>
                             <td>Sim</td>
                             <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
+                                <div class="actions-container">
+                                    <button class="btn-action edit-btn">Editar</button>
+                                    <button class="btn-action update-btn">Atualizar</button>
+                                    <button class="btn-action delete-btn">Remover</button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
