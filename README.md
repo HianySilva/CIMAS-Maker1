@@ -37,7 +37,7 @@ A página inicial exibe uma lista de salas e laboratórios com seus respectivos 
 
 ![Dashboard_Usuarios](./docs/Dashboard_Usuarios.png)
 
-![Dashboard_Administrador](./docs/Dashboard_Administrador.png)
+![Dashboard_Administrador](./docs/Dashboard_Admin.png)
 
 Aqui você pode adicionar novas salas e laboratórios ao sistema.
 
