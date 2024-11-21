@@ -15,19 +15,17 @@ def create_new_institution():
     cnpj = data.get('cnpj')
     phone = data.get('phone')
     email = data.get('email')
-    address = data.get('address')  # Deverá ser um dict de endereço
-    
-    if not name or not cnpj or not phone or not email or not address:
+    address_id = data.get('address_id')  # Agora pegamos o address_id diretamente
+
+    if not name or not cnpj or not phone or not email or not address_id:
         return jsonify({"error": "Todos os campos são obrigatórios"}), 400
-    
-    # Cria o endereço
-    address_id = create_address(address['street'], address['number'], address['city'], address['state'], address['postal_code'])
     
     try:
         create_institution(name, cnpj, phone, email, address_id)
         return jsonify({"message": "Instituição criada com sucesso!"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 # Rota para obter todas as instituições
 @institution_bp.route('/institutions', methods=['GET'])

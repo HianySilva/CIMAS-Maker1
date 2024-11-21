@@ -9,14 +9,18 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Register</h2>
+        <h2>Cadastro</h2>
         <form action="{{ url_for('user.create_new_user') }}" method="POST">
             <input type="text" name="name" placeholder="Nome" required>
             <input type="date" name="dateofbirth" placeholder="Data de Nascimento" required>
-            <input type="text" name="institutionName" placeholder="Nome da Instituição" required>
+            <select id="institution-select" name="institutionId" required>
+                <option value="">Selecione uma instituição</option>
+                <!-- As opções serão preenchidas dinamicamente -->
+            </select>
+                     
             <input type="email" name="email" placeholder="Email Institucional" required>
             <input type="password" name="password" placeholder="Senha" required>
-            <button type="submit">Register</button>
+            <button type="submit">Cadastrar</button>
         </form>
         <div id="message"></div>
         <p>Você já tem conta? <a href="{{ url_for('app.login') }}">Login</a></p>

@@ -7,15 +7,15 @@ DATABASE = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../config/d
 def connect_db():
     return sqlite3.connect(DATABASE)
 
-# Função para criar um usuário(Registro)
+# Função para criar um usuário (Registro)
 def create_user(data):
     conn = connect_db()
     cursor = conn.cursor()
     try:
         cursor.execute('''
-            INSERT INTO user (name, dateofbirth, email, password, institutionName) 
+            INSERT INTO user (name, dateofbirth, email, password, institution_id) 
             VALUES (?, ?, ?, ?, ?)
-        ''', (data['name'], data['dateofbirth'], data['email'], data['password'], data['institutionName']))
+        ''', (data['name'], data['dateofbirth'], data['email'], data['password'], data['institution_id']))
         conn.commit()
     except sqlite3.IntegrityError as e:
         if "email" in str(e):
@@ -28,7 +28,15 @@ def create_user(data):
 def get_all_users():
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute('SELECT id, name, email, institutionName FROM user')
+    cursor.execute('''
+        SELECT 
+            user.id, 
+            user.name, 
+            user.email, 
+            institution.name AS institution_name 
+        FROM user 
+        JOIN institution ON user.institution_id = institution.id
+    ''')
     users = cursor.fetchall()
     conn.close()
     return [
@@ -36,33 +44,41 @@ def get_all_users():
         for user in users
     ], 200
 
-#Função para achar um usuario pelo email e senha(Login)
+# Função para achar um usuário pelo email e senha (Login)
 def get_user_by_email_and_password(email, password):
     conn = connect_db()
     cursor = conn.cursor()
-    
-    cursor.execute('''SELECT id, name, email FROM user WHERE email = ? AND password = ?''', (email, password))
-    user = cursor.fetchone()  # Busca o primeiro usuário que corresponda
-    
+    cursor.execute('''
+        SELECT 
+            user.id, 
+            user.name, 
+            user.email 
+        FROM user 
+        WHERE email = ? AND password = ?
+    ''', (email, password))
+    user = cursor.fetchone()
     conn.close()
-    
     if user:
         return {"id": user[0], "name": user[1], "email": user[2]}  # Retorna o usuário se encontrado
     return None  # Retorna None caso não encontre
 
-
-#Função para achar um usuario pelo id(Login e seção)
+# Função para achar um usuário pelo ID (Sessão)
 def get_user_by_id(user_id):
     conn = connect_db()
     cursor = conn.cursor()
-    
-    cursor.execute('''SELECT id, name FROM user WHERE id = ?''', (user_id,))
-    user = cursor.fetchone()  # Retorna o primeiro usuário com o id correspondente
-    
+    cursor.execute('''
+        SELECT 
+            user.id, 
+            user.name, 
+            institution.name AS institution_name 
+        FROM user 
+        JOIN institution ON user.institution_id = institution.id
+        WHERE user.id = ?
+    ''', (user_id,))
+    user = cursor.fetchone()
     conn.close()
-    
     if user:
-        return {"id": user[0], "name": user[1]}  # Retorna o usuário
+        return {"id": user[0], "name": user[1], "institutionName": user[2]}  # Retorna o usuário
     return None  # Retorna None caso não encontre
 
 # Função para atualizar um usuário
@@ -71,9 +87,9 @@ def update_user(id, data):
     cursor = conn.cursor()
     cursor.execute('''
         UPDATE user 
-        SET name = ?, dateofbirth = ?, email = ?, password = ?, institutionName = ? 
+        SET name = ?, dateofbirth = ?, email = ?, password = ?, institution_id = ? 
         WHERE id = ?
-    ''', (data['name'], data['dateofbirth'], data['email'], data['password'], data['institutionName'], id))
+    ''', (data['name'], data['dateofbirth'], data['email'], data['password'], data['institution_id'], id))
     conn.commit()
     conn.close()
     return {"message": "Usuário atualizado com sucesso!"}
