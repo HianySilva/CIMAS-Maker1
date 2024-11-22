@@ -256,8 +256,32 @@ body {
 }
 
 /* Botões de ação */
-.edit-btn,
-.delete-btn,
+.edit-btn{
+  display: inline-flex; /* Ajusta alinhamento com ícones */
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgb(10, 97, 228);
+  transition: transform 0.3s ease; /* Transições suaves */
+}
+
+.delete-btn{
+  display: inline-flex; /* Ajusta alinhamento com ícones */
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgb(226, 17, 17);
+  transition: transform 0.3s ease; /* Transições suaves */
+}
+
 .update-btn {
   display: inline-flex; /* Ajusta alinhamento com ícones */
   align-items: center;
@@ -267,32 +291,20 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  color: white;
+  color: #28A745;
   transition: transform 0.3s ease; /* Transições suaves */
 }
 
 .edit-btn {
-  background-color: #0079C1;
+  background-color: #f5f5f5;
 }
 
 .delete-btn {
-  background-color: #FF4B4B;
+  background-color: #f5f5f5;
 }
 
 .update-btn {
-  background-color: #28A745;
-}
-
-.edit-btn:hover {
-  background-color: #005D99;
-}
-
-.delete-btn:hover {
-  background-color: #CC0000;
-}
-
-.update-btn:hover {
-  background-color: #218838;
+  background-color: #f5f5f5;
 }
 
 .edit-btn:active,

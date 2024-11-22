@@ -21,10 +21,12 @@
         </nav>
         <div class="actions">
             <!-- Botão de logout -->
-            <button class="btn-logout">
+            <button class="btn-logout" onclick="window.location.href='{{ url_for('app.home') }}'">
                 <i class="fas fa-sign-out-alt"></i> Sair
             </button>
         </div>
+        
+        
     </header>
 
     <!-- Container principal -->
@@ -51,7 +53,9 @@
 
                 <!-- Botão de adicionar à esquerda -->
                 <div class="add-btn-container">
-                    <button class="add-btn">Adicionar Administrador</button>
+                    <button class="add-btn">
+                        <i class="fa-solid fa-plus"></i>  Administrador
+                    </button>
                 </div>
 
                 <!-- Tabela de administradores -->
@@ -73,9 +77,15 @@
                             <td>Sim</td>
                             <td>
                                 <div class="actions-container">
-                                    <button class="btn-action edit-btn">Editar</button>
-                                    <button class="btn-action update-btn">Atualizar</button>
-                                    <button class="btn-action delete-btn">Remover</button>
+                                    <button class="btn-action edit-btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="btn-action update-btn">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </button>
+                                    <button class="btn-action delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -86,9 +96,16 @@
                             <td>Sim</td>
                             <td>
                                 <div class="actions-container">
-                                    <button class="btn-action edit-btn">Editar</button>
-                                    <button class="btn-action update-btn">Atualizar</button>
-                                    <button class="btn-action delete-btn">Remover</button>
+                                    <button class="btn-action edit-btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </button>
+                                <button class="btn-action update-btn">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </button>
+                                    <button class="btn-action delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -99,9 +116,16 @@
                             <td>Sim</td>
                             <td>
                                 <div class="actions-container">
-                                    <button class="btn-action edit-btn">Editar</button>
-                                    <button class="btn-action update-btn">Atualizar</button>
-                                    <button class="btn-action delete-btn">Remover</button>
+                                    <button class="btn-action edit-btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </button>
+                                <button class="btn-action update-btn">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </button>
+                                    <button class="btn-action delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -112,9 +136,16 @@
                             <td>Sim</td>
                             <td>
                                 <div class="actions-container">
-                                    <button class="btn-action edit-btn">Editar</button>
-                                    <button class="btn-action update-btn">Atualizar</button>
-                                    <button class="btn-action delete-btn">Remover</button>
+                                    <button class="btn-action edit-btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </button>
+                                <button class="btn-action update-btn">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </button>
+                                    <button class="btn-action delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
