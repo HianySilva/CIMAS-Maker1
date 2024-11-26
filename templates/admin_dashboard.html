@@ -20,13 +20,10 @@
             <a href="#">Configurações</a>
         </nav>
         <div class="actions">
-            <!-- Botão de logout -->
             <button class="btn-logout" onclick="window.location.href='{{ url_for('app.home') }}'">
                 <i class="fas fa-sign-out-alt"></i> Sair
             </button>
         </div>
-        
-        
     </header>
 
     <!-- Container principal -->
@@ -39,10 +36,7 @@
             </div>
             <ul class="menu">
                 <li><a href="#" class="active"><i class="fas fa-home icon"></i> Início</a></li>
-                <li><a href="#"><i class="fas fa-users icon"></i> Gerenciar Administradores</a></li>
-                <li><a href="#"><i class="fas fa-folder icon"></i> Gerenciar Projetos</a></li>
-                <li><a href="#"><i class="fas fa-cog icon"></i> Configurações</a></li>
-              
+                
             </ul>
         </aside>
 
@@ -53,8 +47,8 @@
 
                 <!-- Botão de adicionar à esquerda -->
                 <div class="add-btn-container">
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>  Administrador
+                    <button class="add-btn" id="openModalBtn">
+                        <i class="fa-solid fa-plus"></i> Administrador
                     </button>
                 </div>
 
@@ -64,95 +58,89 @@
                         <tr>
                             <th>Id</th>
                             <th>Nome</th>
-                            <th>Usuário</th>
-                            <th>Ativo</th>
+                            <th>Email</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for admin in admins %}
                         <tr>
-                            <td>3</td>
-                            <td>Demonstracao Maxnivel</td>
-                            <td>demonstracao</td>
-                            <td>Sim</td>
+                            <td>{{ admin.id }}</td>
+                            <td>{{ admin.username }}</td>
+                            <td>{{ admin.email }}</td>
                             <td>
                                 <div class="actions-container">
                                     <button class="btn-action edit-btn">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
-                                    <button class="btn-action update-btn">
-                                        <i class="fa-solid fa-pen-nib"></i>
-                                    </button>
-                                    <button class="btn-action delete-btn">
+                                    <button class="btn-action delete-btn" onclick="deleteAdmin({{ admin.id }})">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Juliano</td>
-                            <td>juliano</td>
-                            <td>Sim</td>
-                            <td>
-                                <div class="actions-container">
-                                    <button class="btn-action edit-btn">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                </button>
-                                <button class="btn-action update-btn">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                                    <button class="btn-action delete-btn">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Katia Costa</td>
-                            <td>katia</td>
-                            <td>Sim</td>
-                            <td>
-                                <div class="actions-container">
-                                    <button class="btn-action edit-btn">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                </button>
-                                <button class="btn-action update-btn">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                                    <button class="btn-action delete-btn">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Cliente Objeto</td>
-                            <td>cliente</td>
-                            <td>Sim</td>
-                            <td>
-                                <div class="actions-container">
-                                    <button class="btn-action edit-btn">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                </button>
-                                <button class="btn-action update-btn">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                                    <button class="btn-action delete-btn">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    <!-- Modal para adicionar administrador -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModalBtn">&times;</span>
+            <h2>Criar Administrador</h2>
+            <form action="/admin" method="POST">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Digite o nome do administrador" required>
+                
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Digite o e-mail do administrador" required>
+                
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite a senha" required>
+                
+                <button type="submit">Criar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script> <!-- Adicione seu JavaScript -->
+    <script>
+        // Abrir o modal
+        document.getElementById('openModalBtn').addEventListener('click', function() {
+            document.getElementById('adminModal').style.display = 'block';
+        });
+
+        // Fechar o modal
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('adminModal').style.display = 'none';
+        });
+
+        // Fechar o modal se clicar fora dele
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('adminModal')) {
+                document.getElementById('adminModal').style.display = 'none';
+            }
+        }
+
+        // Função para deletar administrador
+        function deleteAdmin(adminId) {
+            if (confirm('Tem certeza de que deseja excluir este administrador?')) {
+                fetch(`/admin/${adminId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Administrador excluído com sucesso!');
+                        location.reload(); // Atualiza a página para refletir as alterações
+                    } else {
+                        alert('Erro ao excluir administrador.');
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

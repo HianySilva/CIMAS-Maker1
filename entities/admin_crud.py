@@ -1,7 +1,14 @@
 import sqlite3
 import os
+from flask import Flask, render_template, request
+from werkzeug.security import generate_password_hash
 
+# Criação da instância Flask
+app = Flask(__name__)
+
+# Configuração do banco de dados
 DATABASE = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../config/database.db')
+
 # Função para conectar ao banco de dados
 def connect_db():
     return sqlite3.connect(DATABASE)
@@ -10,20 +17,38 @@ def connect_db():
 def create_admin(data):
     conn = connect_db()
     cursor = conn.cursor()
+
+    # Hash da senha
+    hashed_password = generate_password_hash(data['password'])
+
     try:
-        cursor.execute('''
-            INSERT INTO admin (email, username, password) 
-            VALUES (?, ?, ?)
-        ''', (data['email'], data['username'], data['password']))
+        cursor.execute('''INSERT INTO admin (email, username, password) VALUES (?, ?, ?)''', 
+                       (data['email'], data['name'], hashed_password))
         conn.commit()
+        success_message = "Administrador criado com sucesso!"
+        return success_message
     except sqlite3.IntegrityError as e:
         if "email" in str(e):
-            return {"error": "Email já existe!"}, 400
+            error_message = "Email já existe!"
+            return error_message
         if "username" in str(e):
-            return {"error": "Username já existe!"}, 400
+            error_message = "Username já existe!"
+            return error_message
     finally:
         conn.close()
-    return {"message": "Administrador criado com sucesso!"}, 201
+
+# Função para criar administrador via rota
+@app.route('/admin', methods=['POST'])
+def create_admin_route():
+    data = request.form.to_dict()
+    message = create_admin(data)
+    
+    # Verifica se a mensagem é de sucesso ou erro
+    if 'Administrador criado com sucesso!' in message:
+        return render_template('admin_dashboard.html', success_message=message)
+    else:
+        return render_template('admin_dashboard.html', error_message=message)
+
 
 # Função para listar os administradores
 def get_all_admins():
