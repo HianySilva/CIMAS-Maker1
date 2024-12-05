@@ -12,7 +12,7 @@ O movimento Maker tem ganhado força ao redor do mundo, promovendo a colaboraç�
 - **Login e Cadastro**: A plataforma permite aos usuários se registrarem e fazerem login para acessar suas áreas personalizadas. Esse processo inclui formulários de registro e login com validação de dados, recuperação de senha e integração com sistemas de autenticação.
 - **Home**: A página inicial da plataforma serve como ponto de partida para todos os usuários. Nela, são apresentadas as principais funcionalidades e novidades da comunidade Maker, incluindo projetos em destaque, acesso rápido às áreas de interesse e notícias da comunidade.  
 - **Dashboard de Usuario**: Cada usuário possui uma área personalizada onde pode gerenciar seus projetos e acompanhar atividades. Esta área fornece uma visão geral das suas contribuições e ferramentas para edição e publicação de projetos.
-- **Crud de Adminstrador**: Interface para administradores gerenciarem usuários, conteúdos e projetos, com funcionalidades de criar, ler, atualizar e deletar, além de controle de permissões e moderação de conteúdo, garantindo um gerencimento eficiente.
+- **Crud de Adminstrador**: Interface para administradores gerenciarem usuários, conteúdos e projetos, com funcionalidades de criar, ler, atualizar e deletar, além de controle de permissões e moderação de conteúdo, garantindo um gerenciamento eficiente.
 
 ## Página Inicial
 
