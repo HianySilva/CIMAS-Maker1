@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ABA - Administrador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-dashboard.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logoo.png') }}" alt="Logo">
+        </div>
+        <nav class="nav-menu">
+            <a href="#">Usuários</a>
+            <a href="#">Projetos</a>
+            <a href="#">Configurações</a>
+        </nav>
+        <div class="actions">
+            <!-- Ícone de logout -->
+            <i class="fas fa-sign-out-alt logout-icon" title="Sair"></i>
+        </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Menu lateral -->
+        <aside class="sidebar">
+            <div class="user-info">
+                <i class="fas fa-user-circle avatar" title="Avatar"></i>
+                <span class="username">{{ user.name }}</span> <!-- Exibe o nome do administrador -->
+            </div>
+            <ul class="menu">
+                <li><a href="#" class="active"><i class="fas fa-home icon"></i> Início</a></li>
+                <li><a href="#"><i class="fas fa-users icon"></i> Gerenciar Administradores</a></li>
+                <li><a href="#"><i class="fas fa-folder icon"></i> Gerenciar Projetos</a></li>
+                <li><a href="#"><i class="fas fa-cog icon"></i> Configurações</a></li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <div class="content">
+            <div class="management-section">
+                <h1>ADMINISTRADORES</h1>
+
+                <!-- Botão de adicionar à esquerda -->
+                <div class="add-btn-container">
+                    <button class="add-btn">Adicionar Administrador</button>
+                </div>
+
+                <!-- Tabela de administradores -->
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Usuário</th>
+                            <th>Ativo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>Demonstracao Maxnivel</td>
+                            <td>demonstracao</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Juliano</td>
+                            <td>juliano</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Katia Costa</td>
+                            <td>katia</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Cliente Objeto</td>
+                            <td>cliente</td>
+                            <td>Sim</td>
+                            <td>
+                                <button class="edit-btn">Editar</button>
+                                <button class="edit-btn">Atualizar</button>
+                                <button class="delete-btn">Remover</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

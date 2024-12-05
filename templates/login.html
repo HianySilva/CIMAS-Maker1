@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
+    <title>Login</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm" action="{{ url_for('app.login') }}" method="POST">
+            <input type="email" name="email" placeholder="Email Institucional" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Login</button>
+        </form>
+        
+        <!-- Div para exibir mensagens -->
+        <div id="message"></div>
+
+        <p>Você não tem conta? <a href="{{ url_for('app.register') }}">Registro</a></p>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>
