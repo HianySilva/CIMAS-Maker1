@@ -33,12 +33,13 @@ form {
   flex-direction: column;
 }
 
-input {
+input, select {
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+
 
 button {
   padding: 10px;

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galeria de projetos com upload e listagem de trabalhos existentes.">
+    <title>Projetos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/projeto.css') }}">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logoo.png') }}" alt="Logo">
+        </div>
+        <nav class="nav-menu">
+            <a href="{{url_for('app.projeto')}}">Projeto</a>
+            <a href="{{url_for('app.galeria')}}">Galeria</a>
+            <a href="#">Salas de aula</a>
+        </nav>
+        <div class="actions">
+            <button class="btn-logout" onclick="window.location.href='{{ url_for('app.home') }}'">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra de Pesquisa Centralizada -->
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Buscar projeto..." onkeyup="filterProjects()">
+        <button class="search-btn">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Botão Adicionar Projeto fora do header -->
+    <div class="button-container">
+        <button id="addProjectBtn" class="add-project-btn">+ Adicionar Projeto</button>
+    </div>
+
+    <main>
+        <!-- Lista de projetos -->
+        <section class="projects-section">
+            <h2>Projetos Existentes</h2>
+            <div class="projects-container" id="projectsContainer">
+                {% for project in projects %}
+                <article class="project-card" data-title="{{ project[1] }}">
+                    <img src="{{ url_for('static', filename='uploads/images/' + project[4]) }}" alt="Imagem do projeto {{ project[1] }}" loading="lazy">
+                    <div class="project-info">
+                        <h3>{{ project[1] }}</h3>
+                        <p>{{ project[2] }}</p>
+                        <a href="{{ url_for('static', filename='uploads/files/' + project[3]) }}" class="download-link" download>
+                            Baixar Arquivo
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Pop-up Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Adicionar Novo Projeto</h2>
+            <form action="{{ url_for('projects_bp.upload_file') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" placeholder="Digite o título do projeto" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" name="description" rows="4" placeholder="Descreva brevemente o projeto" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="file">Arquivo:</label>
+                    <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.zip" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Imagem:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <button type="submit">Enviar Projeto</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Galeria de Projetos. Desenvolvido com ❤️.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+    <script>
+        // Função para filtrar os projetos com base no texto digitado na barra de pesquisa
+        function filterProjects() {
+            var input = document.getElementById("searchBar");
+            var filter = input.value.toUpperCase();
+            var container = document.getElementById("projectsContainer");
+            var projects = container.getElementsByClassName("project-card");
+
+            // Loop através de todos os projetos e exibe/oculta com base no filtro
+            for (var i = 0; i < projects.length; i++) {
+                var title = projects[i].getAttribute("data-title");
+                if (title.toUpperCase().indexOf(filter) > -1) {
+                    projects[i].style.display = "";
+                } else {
+                    projects[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> ABA - Administrador</title>
+    <title>ABA - Administrador</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-dashboard.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='images/logo_aba.png') }}" type="image/png">
@@ -20,8 +20,9 @@
             <a href="#">Configurações</a>
         </nav>
         <div class="actions">
-            <!-- Ícone de logout -->
-            <i class="fas fa-sign-out-alt logout-icon" title="Sair"></i>
+            <button class="btn-logout" onclick="window.location.href='{{ url_for('app.home') }}'">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
         </div>
     </header>
 
@@ -35,9 +36,7 @@
             </div>
             <ul class="menu">
                 <li><a href="#" class="active"><i class="fas fa-home icon"></i> Início</a></li>
-                <li><a href="#"><i class="fas fa-users icon"></i> Gerenciar Administradores</a></li>
-                <li><a href="#"><i class="fas fa-folder icon"></i> Gerenciar Projetos</a></li>
-                <li><a href="#"><i class="fas fa-cog icon"></i> Configurações</a></li>
+                
             </ul>
         </aside>
 
@@ -48,69 +47,135 @@
 
                 <!-- Botão de adicionar à esquerda -->
                 <div class="add-btn-container">
-                    <button class="add-btn">Adicionar Administrador</button>
+                    <button class="add-btn" id="openModalBtn">
+                        <i class="fa-solid fa-plus"></i> Administrador
+                    </button>
                 </div>
 
                 <!-- Tabela de administradores -->
                 <table class="management-table">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                           <!--<th>Id</th> -->
                             <th>Nome</th>
-                            <th>Usuário</th>
-                            <th>Ativo</th>
+                            <th>Email</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for admin in admins %}
                         <tr>
-                            <td>3</td>
-                            <td>Demonstracao Maxnivel</td>
-                            <td>demonstracao</td>
-                            <td>Sim</td>
+                           <!--<td>{{ admin.id }}</td> -->
+                            <td>{{ admin.username }}</td>
+                            <td>{{ admin.email }}</td>
                             <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
+                                <div class="actions-container">
+                                    <button class="btn-action edit-btn" data-id="${admin.id}">
+                                        <i class="fa-solid fa-pen-to-square"></i> 
+                                      </button>
+                                      
+                                      <button class="btn-action delete-btn" data-id="{{ admin.id }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    
+                                    
+                                    
+                                    
+                                </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Juliano</td>
-                            <td>juliano</td>
-                            <td>Sim</td>
-                            <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Katia Costa</td>
-                            <td>katia</td>
-                            <td>Sim</td>
-                            <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Cliente Objeto</td>
-                            <td>cliente</td>
-                            <td>Sim</td>
-                            <td>
-                                <button class="edit-btn">Editar</button>
-                                <button class="edit-btn">Atualizar</button>
-                                <button class="delete-btn">Remover</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
+                                       
                 </table>
             </div>
         </div>
     </div>
+
+    <!-- Modal para adicionar administrador -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModalBtn">&times;</span>
+            <h2>Criar Administrador</h2>
+            <form id="adminForm">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Digite o nome do administrador" required>
+                
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Digite o e-mail do administrador" required>
+                
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite a senha" required>
+                
+                <button type="submit">Criar</button>
+                
+                <!-- Div para mensagem de sucesso ou erro -->
+                <div id="message" style="margin-top: 10px; padding: 10px; font-size: 14px; display: none;"></div>
+            </form>
+            
+            
+        </div>
+    </div>
+
+    <!-- Modal para editar administrador -->
+<div id="editAdminModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeEditModalBtn">&times;</span>
+        <h2>Editar Administrador</h2>
+        <form id="editAdminForm">
+            <input type="hidden" id="editAdminId" name="id">
+            
+            <label for="editName">Nome:</label>
+            <input type="text" id="editName" name="username" placeholder="Digite o nome do administrador" required>
+            
+            <label for="editEmail">E-mail:</label>
+            <input type="email" id="editEmail" name="email" placeholder="Digite o e-mail do administrador" required>
+            
+            <label for="editPassword">Senha:</label>
+            <input type="password" id="editPassword" name="password" placeholder="Digite a senha" required>
+            
+            <button type="submit">Atualizar</button>
+            
+            <!-- Div para mensagem de sucesso ou erro -->
+            <div id="editMessage" style="margin-top: 10px; padding: 10px; font-size: 14px; display: none;"></div>
+        </form>
+    </div>
+</div>
+
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin_adm.js') }}"></script>  <!-- Adicione seu JavaScript -->
+    <script>
+        // Abrir o modal
+        document.getElementById('openModalBtn').addEventListener('click', function() {
+            document.getElementById('adminModal').style.display = 'block';
+        });
+
+        // Fechar o modal
+document.getElementById('closeModalBtn').addEventListener('click', function() {
+    const modal = document.getElementById('adminModal');
+    modal.style.display = 'none';
+
+    // Limpa a mensagem de sucesso ou erro
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = '';
+    messageElement.style.display = 'none';
+});
+
+// Fechar o modal se clicar fora dele
+window.onclick = function(event) {
+    const modal = document.getElementById('adminModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+
+        // Limpa a mensagem de sucesso ou erro
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = '';
+        messageElement.style.display = 'none';
+    }
+};
+
+       
+    </script>
 </body>
 </html>

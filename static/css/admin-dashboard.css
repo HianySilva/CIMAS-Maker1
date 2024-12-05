@@ -31,7 +31,8 @@ body {
 }
 
 .logo img {
-  height: 120px;
+  width: 140px; /* Tamanho fixo para o logo */
+  height: auto;
   margin-right: 10px;
 }
 
@@ -51,14 +52,35 @@ body {
   text-decoration: underline;
 }
 
-.actions .logout-icon {
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
+.
+/* Alinhamento do botão de logout */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 60px; /* Ajustei o gap */
+  margin-left: 100px; /* Ajuste para centralizar o botão de logout */
 }
 
-.actions .logout-icon:hover {
+.btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.1s ease;
+  padding: 30px;
+}
+
+.btn-logout:hover {
   color: #cce4ff;
+}
+
+.logout-icon {
+  font-size: 16px;
+  margin-right: 5px;
 }
 
 /* Estrutura geral */
@@ -114,13 +136,17 @@ body {
   gap: 10px;
   padding: 10px 15px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transições */
 }
 
 .sidebar .menu a.active,
 .sidebar .menu a:hover {
   background-color: #E6F7FF;
   color: #040231;
+}
+
+.sidebar .menu a:focus {
+  outline: 2px solid #519DED; /* Indica foco visível */
 }
 
 .sidebar .menu a .fas {
@@ -167,11 +193,15 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
 }
 
 .add-btn:hover {
   background-color: #005D99;
+}
+
+.add-btn:active {
+  transform: scale(0.95); /* Efeito de clique */
 }
 
 .management-table {
@@ -209,6 +239,80 @@ body {
   background-color: #e0e0e0;
 }
 
+.management-table .status-icon {
+  font-size: 16px;
+}
+
+.management-table .status-icon.active {
+  color: green;
+}
+
+.management-table .status-icon.inactive {
+  color: red;
+}
+
+.table-responsive {
+  overflow-x: auto; /* Rolagem horizontal */
+}
+
+/* Botões de ação */
+.edit-btn{
+  display: inline-flex; /* Ajusta alinhamento com ícones */
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgb(10, 97, 228);
+  transition: transform 0.3s ease; /* Transições suaves */
+}
+
+.delete-btn{
+  display: inline-flex; /* Ajusta alinhamento com ícones */
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgb(226, 17, 17);
+  transition: transform 0.3s ease; /* Transições suaves */
+}
+
+.update-btn {
+  display: inline-flex; /* Ajusta alinhamento com ícones */
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #28A745;
+  transition: transform 0.3s ease; /* Transições suaves */
+}
+
+.edit-btn {
+  background-color: #f5f5f5;
+}
+
+.delete-btn {
+  background-color: #f5f5f5;
+}
+
+.update-btn {
+  background-color: #f5f5f5;
+}
+
+.edit-btn:active,
+.delete-btn:active,
+.update-btn:active {
+  transform: scale(0.95); /* Efeito de clique */
+}
+
 /* Ajustes responsivos */
 @media (max-width: 768px) {
   .main-container {
@@ -229,47 +333,82 @@ body {
     padding: 10px;
   }
 }
-/* Botões de ação */
-.edit-btn,
-.delete-btn,
-.update-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border: none;
-  padding: 3px 10px;
-  border-radius: 5px;
+
+/* Estilos da modal */
+.modal {
+  display: none; /* Inicialmente a modal está oculta */
+  position: fixed;
+  z-index: 1; /* Fica na frente do conteúdo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+  overflow: auto; /* Caso a modal tenha um conteúdo maior que a tela */
+}
+
+/* Conteúdo da modal */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Tamanho da modal */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do botão de fechar */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Mudança de cor quando passar o mouse sobre o botão de fechar */
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
-  font-size: 14px;
+}
+
+/* Estilos dos campos do formulário dentro da modal */
+.modal-content input,
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Botão de enviar dentro da modal */
+.modal-content button {
+  background-color: #002D62;
   color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.edit-btn {
-  background-color: #0079C1;
+.modal-content button:hover {
+  background-color: #002D62;
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #d4edda;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.delete-btn {
-  background-color: #FF4B4B;
+.alert-success {
+  border-color: #c3e6cb;
+  background-color: #c3e6cb;
+  color: #155724;
 }
 
-.update-btn {
-  background-color: #28A745;
-}
-
-.edit-btn:hover {
-  background-color: #005D99;
-}
-
-.delete-btn:hover {
-  background-color: #CC0000;
-}
-
-.update-btn:hover {
-  background-color: #218838;
-}
-
-.edit-btn i,
-.delete-btn i,
-.update-btn i {
-  font-size: 8px;
-}

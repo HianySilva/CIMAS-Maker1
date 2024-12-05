@@ -1,11 +1,11 @@
 from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
 from entities.user_crud import create_user, get_all_users, update_user, delete_user, get_user_by_email_and_password, get_user_by_id
-from entities.admin_crud import get_admin_by_email_and_password
+from entities.admin_crud import get_admin_by_email_and_password, get_all_admins
 
 # Criando um Blueprint para as rotas de usuário
 user_bp = Blueprint('user', __name__)
 
-#Teste de funcionamento
+# Teste de funcionamento
 @user_bp.route('/user/test')
 def test_route():
     return "Acesso à rota de teste de usuario bem-sucedido!"
@@ -23,7 +23,7 @@ def create_new_user():
             'dateofbirth': request.form['dateofbirth'],
             'email': request.form['email'],
             'password': request.form['password'],
-            'institutionName': request.form['institutionName']
+            'institution_id': request.form['institution_id']
         }
     return create_user(data)
 
@@ -65,29 +65,26 @@ def login_user():
     # Se não encontrou nenhum usuário com esse email e senha
     return jsonify({"error": "Credenciais inválidas."}), 401
 
-
-
-
-#Rota para Logout
+# Rota para Logout
 @user_bp.route('/logout')
 def logout():
     session.pop('user_id', None)  # Remove o user_id da sessão
-    return redirect(url_for('app.login'))  # Redireciona
-
-
-
-
+    session.pop('role', None)  # Remove o role da sessão
+    return redirect(url_for('app.login'))  # Redireciona para a rota de login
 
 # Rota para listar todos os usuários
 @user_bp.route('/users', methods=['GET'])
 def list_users():
-    return jsonify(get_all_users())
+    users, status = get_all_users()
+    return jsonify(users), status
 
 # Rota para atualizar um usuário
 @user_bp.route('/user/<int:id>', methods=['PUT'])
 def update_existing_user(id):
-    data = request.get_json()
-    return update_user(id, data)
+    if request.is_json:
+        data = request.get_json()
+        return update_user(id, data)
+    return jsonify({"error": "Formato de mídia não suportado. Envie os dados em JSON."}), 415
 
 # Rota para deletar um usuário
 @user_bp.route('/user/<int:id>', methods=['DELETE'])
@@ -112,17 +109,6 @@ def dashboard():
 
     return jsonify({"error": "Erro ao identificar o tipo de usuário"}), 500
 
-
-
-
-
-
-
-
-
-
-
-
 @user_bp.route('/admin_dashboard')
 def admin_dashboard():
     if session.get('role') != 'admin':  # Verifica se o role é 'admin'
@@ -133,7 +119,9 @@ def admin_dashboard():
         "name": session.get('name'),
         "email": session.get('email')
     }
-    return render_template('admin_dashboard.html', user=user)
+    admins = get_all_admins()  # Certifique-se que essa função retorna os administradores corretamente
+    return render_template('admin_dashboard.html', user=user, admins=admins)
+
 
 
 @user_bp.route('/user_dashboard')
@@ -147,5 +135,6 @@ def user_dashboard():
         "email": session.get('email')
     }
     return render_template('dashboard.html', user=user)
+
 
 

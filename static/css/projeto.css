@@ -1,0 +1,405 @@
+/* Estilos gerais */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: radial-gradient(circle, #040231, #519DED);
+    color: white;
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .logo img {
+    height: 120px;
+    margin-right: 100px;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .nav-menu a:hover {
+    text-decoration: underline;
+  }
+  
+  .
+  /* Alinhamento do botão de logout */
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Ajustei o gap */
+    margin-left: 100px; /* Ajuste para centralizar o botão de logout */
+  }
+  
+  .btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.1s ease;
+    padding: 30px;
+  }
+  .btn-logout:hover {
+    color: #cce4ff;
+  }
+  
+  .logout-icon {
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  
+/* Layout principal */
+main {
+    padding: 20px;
+}
+
+/* Formulário de upload */
+.upload-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.upload-section h2 {
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+.upload-section .form-group {
+    margin-bottom: 15px;
+}
+
+.upload-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.upload-section input,
+.upload-section textarea,
+.upload-section button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.upload-section button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-section button:hover {
+    background-color: #218838;
+}
+
+/* Galeria de projetos */
+.projects-section {
+    margin-top: 30px;
+}
+
+.projects-section h2 {
+    color: #007BFF;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.project-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 15px;
+}
+
+.project-info h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+.project-info p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.download-link {
+    display: inline-block;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.download-link:hover {
+    background-color: #218838;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 30px;
+}
+
+/* Botão de Adicionar Projeto Fixo */
+.button-container {
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 20px;    /* Distância do fundo da tela */
+    right: 20px;     /* Distância da borda direita da tela */
+    z-index: 1000;   /* Garante que o botão fique acima de outros elementos */
+}
+
+.add-project-btn {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.add-project-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* Estilos do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #007BFF;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #aaa;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* Estilos dos campos do formulário no modal */
+.modal-content .form-group {
+    margin-bottom: 15px;
+}
+
+.modal-content label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    background-color: #28a745;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #218838;
+}
+
+/* Animação do fade in */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* Barra de Pesquisa Centralizada */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    width: 350px;
+}
+
+.search-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+.search-btn i {
+    font-size: 1.5rem;
+}
+
+/* Ajustes no layout do header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.logo img {
+    width: 120px;
+}
+
+.nav-menu a {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-logout i {
+    margin-right: 8px;
+}
+
+.btn-logout:hover {
+    background-color: #0056b3;
+}
